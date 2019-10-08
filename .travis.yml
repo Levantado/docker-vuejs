@@ -11,7 +11,7 @@ after_success:
   - docker build -t levantado/visitors-back ./backend
   - docker build -t levantado/visitors-revers ./revers_proxy
   - docker build -t levantado/visitors-frontend ./frontend
-  - echor "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echor $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
   - docker push levantado/visitors-back
   - docker push levantado/visitors-revers
   - docker push levantado/visitors-frontend
