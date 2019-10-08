@@ -1,0 +1,30 @@
+{
+  "AWSEBDodkerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name:": "backend",
+      "image": "levantado/visitors-back",
+      "hostname": "aiohttp",
+      "essential": true
+    },
+   {
+      "name:": "frontend",
+      "image": "levantado/visitors-frontend",
+      "hostname": "vue_nginx",
+      "essential": true
+    },
+    {
+      "name:": "revers_proxy",
+      "image": "levantado/visitors-revers",
+      "hostname": "visitors_nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["frontend", "backend"]
+    }
+  ]
+}

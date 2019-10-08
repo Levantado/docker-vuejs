@@ -10,4 +10,5 @@ RUN apk del .build-deps
 ADD server.py .
 ENV PYTHONUNBUFFERED 1
 #CMD ["python","server.py"]
+EXPOSE 8080
 CMD ["gunicorn", "server:init_func", "--bind", "0.0.0.0:8080", "--worker-class", "aiohttp.GunicornWebWorker"]

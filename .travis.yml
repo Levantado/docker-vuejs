@@ -17,16 +17,16 @@ after_success:
   - docker push levantado/visitors-frontend
 
 
-#deploy:
-    ##  provider: elasticbeanstalk
-    ##  region: "us-east-1"
-    ##  app: "docker-vuejs"
-    ##  env: "DockerVuejs-env"
-    ##  bucket_name: "elasticbeanstalk-us-east-1-245396819361"
-    ##  bucket_path: "docker-vuejs"
-    ##  on:
-    ##    branch: master
-    ##  access_key_id:
-    ##    secure: $AWS_ACCESS_KEY
-  ##  secret_access_key:
-  ##    secure: $AWS_SECRET_KEY
+deploy:
+      provider: elasticbeanstalk
+      region: "us-east-1"
+      app: "multi-docker"
+      env: "MultiDocker-env"
+      bucket_name: "elasticbeanstalk-us-east-1-245396819361"
+      bucket_path: "multi-docker"
+      on:
+        branch: master
+      access_key_id:
+        secure: $AWS_ACCESS_KEY
+      secret_access_key:
+        secure: $AWS_SECRET_KEY
