@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  redis-server:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+
+  aiohttp:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - redis-server
+    ports:
+      - 8080
+    command: "python server.py"
+
+  vue_nginx:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    restart: always
+    expose:
+      - 80
+
+  visitors_nginx:
+    build:
+      context: revers_proxy
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - vue_nginx
+      - aiohttp
+    ports:
+      - 80:8000
